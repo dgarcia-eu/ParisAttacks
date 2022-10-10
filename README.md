@@ -1,8 +1,3 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
 # Reproduction Materials for "Collective Emotions and Social Resilience in the Digital Traces After a Terrorist Attack"
 David Garcia and Bernard Rimé, 10 October 2022
 
