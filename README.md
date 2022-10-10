@@ -7,7 +7,7 @@ The new code and datasets with more accessible file formats can be found on the 
 Please address any questions or comments to david.garcia@uni-konstanz.de
 
 # New Data files
-### Main tweets file: Tweets.csv.gz
+### Main tweets file: Tweets.csv.gz and Tweets.RData
 Size: 17,899,591 rows, 12 columns  
 This file contains the essential content data for each tweet in the study.  
 Columns:
@@ -35,10 +35,29 @@ Columns:
 - userid: Integer. Anonymized user id of the author of the tweet.
 - date: String. Date when the tweet was produced in YYYY-MM-DD format. 
 
+
+### Tweet pairs: TweetPairs.csv.gz and TweetPairsDF.RData
+Size: 890,994 rows, 11 columns  
+This file contains time-ordered tweet pairs by the same user in a period after the attacks.  
+Columns:  
+
+- userid: Integer. Anonymized user id of the author of the tweet.
+- soc: Integer. Count of words of the social processes class in LIWC.
+- prosoc: Integer. Count of words of the prosocial dictionary.
+- frenchValues: Integer.  Count of words of the French values dictionary.
+- posemo: Integer. Count of words of the PA class in LIWC.
+- negemo: Integer. Count of words of the NA class in LIWC.
+- presoc: Integer. Count of social process words in previous tweet.
+- preprosoc: Integer. Count of words of prosocial class in previous tweet. 
+- prefrenchValues: Integer. Count of words from the French values dictionary in prev tweet.
+- preposemo: Integer. Count of PA words in previous tweet.
+- prenegemo: Integer. Count of NA words in previous tweet.
+
+
 ### Running the code
 The main file to reproduce results is Paris_Attacks.Rmd. It is a markdown file with R code that generates a pdf report with the results of the main text of the article and additional statistics and descriptive information. Functions used several times can be found under Scripts/AuxFunctions.R. It loads data contained in the Data/ folder.
 
-Some chunks of Paris_Attacks.Rmd are very computationally intensive and require large memory. These chunks are set not to be run automatically "eval=FALSE" and the results of our execution of those chunks are saved in the temp/ folder. This way you can inspect the results without having to run time-demanding code for bootstrapping.
+Some chunks of Paris_Attacks.Rmd are very computationally intensive and require large memory. These chunks are set not to be run automatically "eval=FALSE" and the results of our execution of those chunks are saved in the temp/ folder. This way you can inspect the results and statistical analyses without having to run time-demanding code for bootstrapping and other computational tasks.
 
 The current version and the pdf output was produced with R version 3.6.3 (the original paper is a few years old). Attached package versions in sessionInfo() are the following:
 texreg_1.36.23 arm_1.12-2     lme4_1.1-23    Matrix_1.2-18  MASS_7.3-51.5  magrittr_2.0.1 dplyr_1.0.10   zoo_1.8-8    ggplot2_3.3.2  sfsmisc_1.1-13

@@ -669,3 +669,57 @@ summary(med.NA)
 ```
 
 
+
+
+# 5. Tweet-level analysis
+
+
+```{r SetupTweetLevel, cache=FALSE, eval=TRUE, echo=TRUE, message=FALSE, warning=FALSE, results='hide'}
+library(lmtest)
+library(lme4)
+```
+
+
+```{r M1TweetLevel, cache=TRUE, eval=FALSE, echo=TRUE, message=FALSE, results="asis"}
+load("Data/TweetPairsDF.RData")
+
+TweetPairsDF$presocB <- TweetPairsDF$presoc>0
+TweetPairsDF$preprosocB <- TweetPairsDF$preprosoc>0
+TweetPairsDF$prefrenchvaluesB <- TweetPairsDF$prefrenchValues>0
+
+TweetPairsDF$preposemoB <- TweetPairsDF$preposemo>0
+TweetPairsDF$prenegemoB <- TweetPairsDF$prenegemo>0
+```
+
+
+```{r MTweetLevel, cache=TRUE, eval=FALSE, echo=TRUE, message=FALSE, results="asis"}
+
+linSocPos <- glmer((soc>0) ~ presocB * preposemoB + (1|userid), data=TweetPairsDF, family=binomial)
+save(linSocPos, file="temp/LinSocPos.RData")
+
+linPosSoc <- glmer((posemo>0) ~ presocB * preposemoB + (1|userid), data=TweetPairsDF, family=binomial)
+save(linPosSoc, file="temp/LinPosSoc.RData")
+
+linSocNeg <- glmer((soc>0) ~ prenegemoB * presocB + (1|userid), data=TweetPairsDF, family=binomial)
+save(linSocNeg, file="temp/LinSocNeg.RData")
+
+linNegSoc <- glmer((negemo>0) ~ presocB * prenegemoB + (1|userid), data=TweetPairsDF, family=binomial)
+save(linNegSoc, file="temp/LinNegSoc.RData")
+
+```
+
+
+```{r MplTweetLevel, cache=TRUE, eval=TRUE, echo=TRUE, message=FALSE, results="asis"}
+load("temp/LinSocPos.RData")
+load("temp/LinPosSoc.RData")
+load("temp/LinSocNeg.RData")
+load("temp/LinNegSoc.RData")
+texreg(list(linSocPos, linPosSoc, linSocNeg, linNegSoc), custom.model.names = c("SocP", "PosS", "SocN", "NegS"), bold=0.05)
+```
+
+```{r MplCITweetLevel, cache=TRUE, eval=TRUE, echo=TRUE, message=FALSE}
+confint(linSocPos, method="Wald")
+confint(linPosSoc, method="Wald")
+confint(linSocNeg, method="Wald")
+confint(linNegSoc, method="Wald")
+```
