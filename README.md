@@ -1,7 +1,7 @@
 # Reproduction Materials for "Collective Emotions and Social Resilience in the Digital Traces After a Terrorist Attack"
 David Garcia and Bernard Rimé, 10 October 2022
 
-Following the recommendations of Crüwell et al., 2022, this document explains an updated version of the replication materials for the article "Collective Emotions and Social Resilience in the Digital Traces After a Terrorist Attack" (Garcia & Rimé, 2018). The data and codes have been prepared to reproduce the results on the main text of the article.
+Following the recommendations of Crüwell et al., 2022, this document explains an updated version of the replication materials for the article "Collective Emotions and Social Resilience in the Digital Traces After a Terrorist Attack" (Garcia & Rimé, 2019). The data and codes have been prepared to reproduce the results on the main text of the article.
 The new code and datasets with more accessible file formats can be found on the following github repository: https://github.com/dgarcia-eu/ParisAttacks 
 
 Please address any questions or comments to david.garcia@uni-konstanz.de
